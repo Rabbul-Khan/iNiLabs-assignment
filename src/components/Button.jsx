@@ -1,9 +1,9 @@
-import { FaArrowRightLong } from 'react-icons/fa6';
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const Button = () => {
   return (
-    <button className=" bg-blue-primary text-white  px-5 py-3 rounded-full flex items-center gap-2 hover:bg-blue-800 transition ease-in duration-200 transform drop-shadow-sm hover:drop-shadow-lg  ">
-      Sign up free <FaArrowRightLong className=" text-xs mt-1" />
+    <button className=" flex transform items-center justify-center gap-2 rounded-full bg-blue-primary px-5 py-3 text-white drop-shadow-sm transition duration-200 ease-in hover:bg-blue-800 hover:drop-shadow-lg">
+      Sign up free <FaArrowRightLong className="mt-1 text-xs" />
     </button>
   );
 };
