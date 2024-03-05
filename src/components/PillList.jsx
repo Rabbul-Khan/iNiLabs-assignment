@@ -1,15 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+let variants = {};
+const isMobile = window.innerWidth < 1300;
+if (!isMobile) {
+  variants = {
+    initial: {
+      x: 1000,
+    },
+    animate: {
+      x: 0,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+}
 
 const Pill = ({ id, label, active, onClick }) => {
   return (
-    <div
-      className={`min-w-max cursor-pointer rounded-full border border-gray px-5 py-3 text-center text-navy-blue ${
-        active ? "bg-[#F1F3FD] " : ""
+    <motion.div
+      className={`min-w-max cursor-pointer rounded-full border border-gray px-5 py-3 text-center text-navy-blue hover:bg-[#f6f8ff] ${
+        active ? "bg-[#e4e9ff] " : ""
       }`}
       onClick={() => onClick(id)}
+      variants={variants}
     >
       {label}
-    </div>
+    </motion.div>
   );
 };
 
@@ -21,7 +40,13 @@ const PillList = ({ pills }) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <motion.div
+      className="flex flex-wrap gap-2 "
+      variants={variants}
+      whileInView="animate"
+      initial="initial"
+      viewport={{ once: true }}
+    >
       {pills.map((pill) => (
         <Pill
           key={pill.id}
@@ -31,7 +56,7 @@ const PillList = ({ pills }) => {
           onClick={handlePillClick}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };
 

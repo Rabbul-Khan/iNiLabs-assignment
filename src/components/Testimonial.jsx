@@ -1,12 +1,18 @@
+import { motion } from "framer-motion";
+
 const Testimonial = ({
   logoImg,
   testimonialText,
   customerImg,
   customerName,
   customerPosition,
+  variants,
 }) => {
   return (
-    <div className="grid grid-rows-[50px_1fr_70px] gap-5 text-navy-blue-light md:gap-10">
+    <motion.div
+      className="grid grid-rows-[50px_1fr_70px] gap-5 text-navy-blue-light md:gap-10"
+      variants={variants}
+    >
       <img
         src={logoImg}
         alt=""
@@ -28,7 +34,7 @@ const Testimonial = ({
           <p>{customerPosition}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

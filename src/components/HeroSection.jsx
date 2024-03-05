@@ -1,13 +1,47 @@
 import Button from "./Button";
 import { FaStar, FaStarHalf } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
+  let variants = {};
+  const isMobile = window.innerWidth < 1300;
+  if (!isMobile) {
+    variants = {
+      initial: {
+        x: -500,
+      },
+      animate: {
+        x: 0,
+        transition: {
+          duration: 0.35,
+        },
+      },
+    };
+  }
+  const text = "Take Ideas from Better to Best".split(" ");
   return (
-    <div className="flex flex-col items-center justify-center gap-10 md:flex-row lg:gap-20">
+    <motion.div
+      className="flex flex-col items-center justify-center gap-10 md:flex-row lg:gap-20"
+      variants={variants}
+      animate="animate"
+      initial="initial"
+    >
       <div className="order-2 flex max-w-[450px] flex-col gap-10 md:order-1 md:w-2/5">
         <div className="flex flex-col gap-5 text-center lg:text-left">
           <h1 className="text-4xl font-extrabold text-navy-blue xl:text-5xl">
-            Take ideas from better to best
+            {text.map((el, i) => (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 2,
+                  delay: i / 7,
+                }}
+                key={i}
+              >
+                {el}{" "}
+              </motion.span>
+            ))}
           </h1>
           <h2 className="text-lg text-[#05003872]">
             Miro is your team's visual platform to connect, collaborate, and
@@ -52,9 +86,9 @@ const HeroSection = () => {
         alt="Functionality of Miro"
         width={800}
         height={620}
-        className="order-1 m-auto h-auto min-w-60 max-w-full sm:min-w-96 md:order-2 md:w-3/5"
+        className="order-1 h-auto max-w-full m-auto min-w-60 sm:min-w-96 md:order-2 md:w-3/5"
       />
-    </div>
+    </motion.div>
   );
 };
 

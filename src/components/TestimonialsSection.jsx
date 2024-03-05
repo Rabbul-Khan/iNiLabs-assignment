@@ -1,15 +1,58 @@
 import ButtonOutline from "./ButtonOutline";
 import Testimonial from "./Testimonial";
+import { motion } from "framer-motion";
 
 const TestimonialsSection = () => {
+  let variants = {};
+  const isMobile = window.innerWidth < 1300;
+  if (!isMobile) {
+    variants = {
+      initial: {
+        x: 1000,
+      },
+      animate: {
+        x: 0,
+        transition: {
+          duration: 0.5,
+          staggerChildren: 0.2,
+        },
+      },
+    };
+  }
+  const text = "Loved by the world's best teams".split(" ");
   return (
-    <div className="flex flex-col items-center gap-10">
-      <h2 className="text-center text-5xl font-extrabold text-navy-blue">
-        Loved by the world's best teams
+    <motion.div
+      className="flex flex-col items-center gap-10"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-5xl font-extrabold text-center text-navy-blue">
+        {text.map((el, i) => (
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 2,
+              delay: i / 10,
+            }}
+            key={i}
+          >
+            {el}{" "}
+          </motion.span>
+        ))}
       </h2>
       <ButtonOutline />
 
-      <div className="mb-10 mt-10 grid grid-cols-1 md:mb-32 md:grid-cols-3 md:gap-20">
+      <motion.div
+        className="grid grid-cols-1 mt-10 mb-10 md:mb-32 md:grid-cols-3 md:gap-20"
+        variants={variants}
+        whileInView="animate"
+        initial="initial"
+        viewport={{ once: true }}
+      >
         {testimonials.map((t) => {
           return (
             <Testimonial
@@ -19,11 +62,12 @@ const TestimonialsSection = () => {
               customerName={t.customerName}
               customerPosition={t.customerPosition}
               key={t.customerId}
+              variants={variants}
             />
           );
         })}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

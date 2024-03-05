@@ -1,12 +1,19 @@
 import { FaMinus } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="flex items-center justify-center bg-royal-blue text-white">
-      <div className="mx-5 flex max-w-fit flex-col gap-20 py-20 lg:mx-28 lg:gap-10 2xl:mx-72">
+    <motion.footer
+      className="flex items-center justify-center text-white bg-royal-blue"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex flex-col gap-20 py-20 mx-5 max-w-fit lg:mx-28 lg:gap-10 2xl:mx-72">
         <div className="flex flex-col gap-20 xl:flex-row">
           <div className="flex flex-col gap-20 sm:flex-row">
-            <div className="mx-auto flex flex-col gap-10">
+            <div className="flex flex-col gap-10 mx-auto">
               <p className="text-[23px] font-extrabold">Scan.Detect.Remove.</p>
               <ul className="flex gap-10">
                 <li>
@@ -53,27 +60,27 @@ const Footer = () => {
               >
                 <li>
                   <a href="#">
-                    <FaMinus className="mr-4 hidden sm:inline" /> Iphone
+                    <FaMinus className="hidden mr-4 sm:inline" /> Iphone
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <FaMinus className="mr-4 hidden sm:inline" /> Android
+                    <FaMinus className="hidden mr-4 sm:inline" /> Android
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <FaMinus className="mr-4 hidden sm:inline" /> Help
+                    <FaMinus className="hidden mr-4 sm:inline" /> Help
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <FaMinus className="mr-4 hidden sm:inline" /> About
+                    <FaMinus className="hidden mr-4 sm:inline" /> About
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <FaMinus className="mr-4 hidden sm:inline" /> Insights
+                    <FaMinus className="hidden mr-4 sm:inline" /> Insights
                   </a>
                 </li>
               </ul>
@@ -92,10 +99,10 @@ const Footer = () => {
                 </p>
                 <input
                   type="text"
-                  className="w-4/6 rounded-l-full px-3 py-1 sm:w-3/4"
+                  className="w-4/6 px-3 py-1 rounded-l-full sm:w-3/4"
                   placeholder="Email address"
                 />
-                <button className="w-2/6 rounded-r-full bg-navy-blue px-3 py-1 font-extrabold text-white sm:w-1/4 ">
+                <button className="w-2/6 px-3 py-1 font-extrabold text-white rounded-r-full bg-navy-blue sm:w-1/4 ">
                   Submit
                 </button>
               </div>
@@ -109,7 +116,7 @@ const Footer = () => {
           trademarks of Google LLC.
         </p>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

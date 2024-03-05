@@ -1,16 +1,61 @@
 import Button from "./Button";
+import { motion } from "framer-motion";
+
+const gridVariants = {};
 
 const FeaturesSection = () => {
+  let gridVariants = {};
+  const isMobile = window.innerWidth < 1300;
+  if (!isMobile) {
+    gridVariants = {
+      initial: {
+        x: 1000,
+      },
+      animate: {
+        x: 0,
+        transition: {
+          duration: 0.5,
+          staggerChildren: 0.2,
+        },
+      },
+    };
+  }
+  const text = "Collaborate without constraints".split(" ");
   return (
-    <div className="flex flex-col">
+    <motion.div
+      className="flex flex-col"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div>
         <h2 className="relative m-auto max-w-[40rem] pt-20 text-center text-2xl font-extrabold text-navy-blue md:text-3xl lg:text-5xl">
-          Collaborate without constraints{" "}
-          <img src="banner.svg" alt="" className="absolute right-10 top-0 " />
+          {text.map((el, i) => (
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 2,
+                delay: i / 7,
+              }}
+              key={i}
+            >
+              {el}{" "}
+            </motion.span>
+          ))}
+          <img src="banner.svg" alt="" className="absolute top-0 right-10 " />
         </h2>
       </div>
-      <div className="flex flex-col md:flex-row">
-        <div className="px-5 py-5 md:p-10">
+      <motion.div
+        className="flex flex-col overflow-hidden md:flex-row"
+        variants={gridVariants}
+        whileInView="animate"
+        initial="initial"
+        viewport={{ once: true }}
+      >
+        <motion.div className="px-5 py-5 md:p-10" variants={gridVariants}>
           <h3 className="text-lg font-bold md:text-2xl">Free forever</h3>
           <p className="text-navy-blue-light">
             Our free plan gives you unlimited team members, 3 boards, and 300+
@@ -21,8 +66,8 @@ const FeaturesSection = () => {
             </a>{" "}
             for more features.
           </p>
-        </div>
-        <div className="px-5 py-5 md:p-10">
+        </motion.div>
+        <motion.div className="px-5 py-5 md:p-10" variants={gridVariants}>
           <h3 className="text-lg font-bold md:text-2xl">Easy integrations</h3>
           <p className="text-navy-blue-light">
             Miro has 100+ powerful integrations with tools you already use like
@@ -33,8 +78,8 @@ const FeaturesSection = () => {
             </a>
             .
           </p>
-        </div>
-        <div className="px-5 py-5 md:p-10">
+        </motion.div>
+        <motion.div className="px-5 py-5 md:p-10" variants={gridVariants}>
           <h3 className="text-lg font-bold md:text-2xl">Security first</h3>
           <p className="text-navy-blue-light">
             We treat your data like you would — with the utmost care. We follow
@@ -45,12 +90,12 @@ const FeaturesSection = () => {
             </a>
             .
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className="mx-auto">
         <Button />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
